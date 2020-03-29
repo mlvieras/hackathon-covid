@@ -1,30 +1,26 @@
 import React from 'react';
 
-import { goToPage, routeNaming, AppLink } from '../../routes';
+import { goToPage, routeNaming } from '../../routes';
 import { logger } from '../../helpers/logger';
 import { SessionController } from '../../networking/controllers/session-controller';
 import { withLayout, LAYOUT_TYPES } from '../../hocs/with-layout';
-import styles from './login.module.scss';
+import styles from './set-password.module.scss';
+import { ParamsHelper } from '../../helpers/params-helper';
 
-class Login extends React.Component {
+class SetPassword extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      emailError: null,
       passwordError: null,
+      error: false,
     };
 
-    this.email = '';
     this.password = '';
+    this.token = ParamsHelper.parseQueryParams(window.location.search);
 
-    this._onEmailChange = this._onEmailChange.bind(this);
     this._onPasswordChange = this._onPasswordChange.bind(this);
     this._onSubmit = this._onSubmit.bind(this);
-  }
-
-  _onEmailChange(event) {
-    this.email = event.target.value;
   }
 
   _onPasswordChange(event) {
@@ -33,10 +29,6 @@ class Login extends React.Component {
 
   _getFormErrors() {
     const errors = {};
-    if (!this.email) {
-      errors.emailError = 'El email no puede ser vacío.';
-    }
-
     if (!this.password) {
       errors.passwordError = 'La contraseña no puede ser vacía';
     }
@@ -51,7 +43,7 @@ class Login extends React.Component {
     event.preventDefault();
 
     this.setState({
-      emailError: null,
+      error: null,
       passwordError: null,
     });
 
@@ -62,10 +54,13 @@ class Login extends React.Component {
     }
 
     try {
-      await SessionController.login(this.email, this.password);
+      await SessionController.setPassword(this.token, this.password);
       goToPage(routeNaming.DASHBOARD);
     } catch (error) {
       logger.warn(error);
+      this.setState({
+        error: 'Estamos experimentando problemas, intenta de nuevo',
+      });
     }
   }
 
@@ -74,16 +69,16 @@ class Login extends React.Component {
       <div className={styles.container}>
         <form onSubmit={this._onSubmit} className={styles.form}>
           <h1 className={styles.title}>
-            Iniciar sesión
+            Recuperar contraseña
           </h1>
 
-          <label className={styles.label} htmlFor="login-page-email">
-            Email <br />
+          <label className={styles.label} htmlFor="set-password-page-email">
+            Contraseña <br />
             <input
               className={styles.input}
-              type="email"
-              id="login-page-email"
-              onChange={this._onEmailChange}
+              id="set-password-page-email"
+              type="password"
+              onChange={this._onPasswordChange}
             />
             {
               this.state.emailError
@@ -95,37 +90,22 @@ class Login extends React.Component {
             }
           </label>
 
-          <label className={styles.label} htmlFor="login-page-password">
-            Contraseña <br />
-            <input
-              className={styles.input}
-              type="password"
-              id="login-page-password"
-              onChange={this._onPasswordChange}
-            />
-            {
-              this.state.passwordError
-              && (
-                <p className={styles.error}>
-                  {this.state.passwordError}
-                </p>
-              )
-            }
-          </label>
+          {
+            this.state.error
+            && (
+              <p className={styles.error}>
+                Estamos experimentando problemas, intenta de nuevo.
+              </p>
+            )
+          }
 
           <input type="submit" className={styles.submit} value="Ingresar" />
-          <AppLink
-            className={styles.link}
-            routeName={routeNaming.FORGOT_PASSWORD}
-          >
-            Olvidé mi contraseña
-          </AppLink>
         </form>
       </div>
     );
   }
 }
 
-const WrappedLogin = withLayout(LAYOUT_TYPES.DEFAULT, Login);
+const WrappedSetPassword = withLayout(LAYOUT_TYPES.DEFAULT, SetPassword);
 
-export { WrappedLogin as Login };
+export { WrappedSetPassword as SetPassword };
