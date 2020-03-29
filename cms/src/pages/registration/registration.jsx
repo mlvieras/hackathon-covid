@@ -47,7 +47,7 @@ class Registration extends React.Component {
         }
 
         try {
-            const data = await RegistrationController.register(this.email, this.password);
+            await RegistrationController.register(this.email, this.password);
 
             goToPage(routeNaming.DASHBOARD);
 
@@ -62,6 +62,8 @@ class Registration extends React.Component {
         return (
             <div className={style.container}>
                 <form className={style.form} noValidate onSubmit={this._handleSubmit}>
+
+                    <p className={style.title}>Registrarse</p>
 
                     <div className={style.row}>
                         <label className={styles.label} htmlFor="registration-email">Email</label>

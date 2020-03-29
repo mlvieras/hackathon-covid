@@ -6,6 +6,7 @@ const routeNaming = {
   CATCH_ALL: 'catchAll',
   LOGIN: 'login',
   REGISTER: 'register',
+  BUSINESS_INFO: "businessInfo",
   FORGOT_PASSWORD: 'forgotPassword',
   SET_PASSWORD: 'setPassword',
 };
@@ -42,6 +43,10 @@ const routes = [
   {
     name: routeNaming.REGISTER,
     path: '/register'
+  },
+  {
+    name: routeNaming.BUSINESS_INFO,
+    path: '/businessInfo'
   },
   {
     name: routeNaming.FORGOT_PASSWORD,
