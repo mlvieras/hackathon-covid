@@ -19,7 +19,8 @@ class BusinessInfo extends React.Component {
       deliveryZone: "",
       address: "",
       instagram: "",
-      facebook: ""
+      facebook: "",
+      description: ""
     };
 
     this._onTextChange = this._onTextChange.bind(this);
@@ -41,7 +42,7 @@ class BusinessInfo extends React.Component {
       return;
     }
 
-    await BusinessController.createProvider({...this.state});
+    await BusinessController.createBusiness({...this.state});
     goToPage(routeNaming.DASHBOARD);
   }
 
@@ -49,24 +50,24 @@ class BusinessInfo extends React.Component {
     return (
       <form className={style.container} onSubmit={this._onSubmit}>
 
-        <p className={style.title}>Información sobre el negocio</p>
+        <h1 className={style.title}>Información sobre el negocio</h1>
 
         <p className={style.subTitle}>Información general</p>
 
         <label className={style.label} htmlFor="business-name">Nombre del negocio</label>
-        <input id="business-name" onChange={this._onTextChange} required={true}
+        <input id="business-name" onChange={this._onTextChange} required
                name="name" className={style.input}/>
 
         <label className={style.label} htmlFor="business-phones">Teléfonos
           <span className={style.infoLabel}>(Números de teléfonos separados por coma)</span>
         </label>
-        <input id="business-phones" onChange={this._onTextChange} required={true}
+        <input id="business-phones" onChange={this._onTextChange} required
                name="phones" className={style.input}/>
 
         <label className={style.label} htmlFor="business-emails">Emails
           <span className={style.infoLabel}>(Emails separados por coma)</span>
         </label>
-        <input id="business-email" onChange={this._onTextChange} required={true}
+        <input id="business-email" onChange={this._onTextChange} required
                name="emails" className={style.input}/>
 
         <label className={style.label} htmlFor="business-tags">Tags
@@ -94,18 +95,18 @@ class BusinessInfo extends React.Component {
 
         {this.state.type === "DELIVERY" ?
           <>
-            <label className={style.label} onChange={this._onTextChange} required={true}
+            <label className={style.label} onChange={this._onTextChange} required
                    htmlFor="business-delivery-zone">Zona de delivery</label>
             <input id="business-delivery-zone" name="deliveryZone" className={style.input}/>
           </>
           :
           <>
             <label className={style.label} htmlFor="business-address">Dirección</label>
-            <input id="business-address" onChange={this._onTextChange} required={true}
+            <input id="business-address" onChange={this._onTextChange} required
                    name="address" className={style.input}/>
 
             <label className={style.label} htmlFor="business-delivery-range">Rango de entrega</label>
-            <input id="business-delivery-range" onChange={this._onTextChange} required={true}
+            <input id="business-delivery-range" onChange={this._onTextChange} required
                    name="deliveryRange" placeholder="Ejemplo, 200 metros" className={style.input}/>
           </>
         }
@@ -120,7 +121,13 @@ class BusinessInfo extends React.Component {
         <input id="business-facebook" onChange={this._onTextChange}
                className={style.input}/>
 
+        <label htmlFor="business-description" className={style.label}>
+          Cuéntanos sobre ti y tu negocio
+        </label>
+        <textarea rows="3" className={style.textArea} id="business-description"
+         name="description" onChange={this._onTextChange}/>
         <br/>
+
         <button className={style.submit} type="submit">Enviar</button>
 
       </form>
