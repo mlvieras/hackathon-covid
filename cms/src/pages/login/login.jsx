@@ -81,6 +81,7 @@ class Login extends React.Component {
             Email <br />
             <input
               className={styles.input}
+              type="email"
               id="login-page-email"
               onChange={this._onEmailChange}
             />
@@ -98,6 +99,7 @@ class Login extends React.Component {
             Contraseña <br />
             <input
               className={styles.input}
+              type="password"
               id="login-page-password"
               onChange={this._onPasswordChange}
             />
