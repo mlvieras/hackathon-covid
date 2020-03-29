@@ -1,7 +1,7 @@
 import { routeNaming } from './routes/routes';
 import { Login } from './pages/login';
 import {Registration} from "./pages/registration/registration";
-import BusinessInfo from "./pages/business-info/business-info";
+import {BusinessInfo} from "./pages/business-info/business-info";
 
 const routeConfig = [
   {

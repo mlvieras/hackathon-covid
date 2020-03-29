@@ -2,8 +2,9 @@ import React from "react";
 import style from "./business-info.module.scss";
 import {BusinessController} from "../../networking/controllers/business-controller";
 import {goToPage, routeNaming} from "../../routes";
+import {LAYOUT_TYPES, withLayout} from "../../hocs/with-layout";
 
-export default class BusinessInfo extends React.Component {
+class BusinessInfo extends React.Component {
 
   constructor(props) {
     super(props);
@@ -126,3 +127,7 @@ export default class BusinessInfo extends React.Component {
     )
   }
 }
+
+const WrappedBusinessInfo = withLayout(LAYOUT_TYPES.DEFAULT, BusinessInfo);
+
+export {WrappedBusinessInfo as BusinessInfo};
