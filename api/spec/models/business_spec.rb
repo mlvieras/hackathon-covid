@@ -28,18 +28,8 @@ RSpec.describe Business, type: :model do
       expect(business).not_to be_valid
     end
 
-    it 'is not valid if phone_numbers is missing' do
-      business.phone_numbers = nil
-      expect(business).not_to be_valid
-    end
-
     it 'is not valid if type is missing' do
       business.type = nil
-      expect(business).not_to be_valid
-    end
-
-    it 'is not valid if availability_hours is missing' do
-      business.availability_hours = nil
       expect(business).not_to be_valid
     end
   end
