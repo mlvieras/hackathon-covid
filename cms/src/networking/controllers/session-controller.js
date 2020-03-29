@@ -4,6 +4,7 @@ import { Provider } from '../../models/provider';
 
 const LOGIN_PATH = 'api/sessions';
 const FORGOT_PASSWORD_PATH = 'api/sessions/forgot-password';
+const SET_PASSWORD_PATH = 'api/sessions/set-password';
 
 class SessionController {
   static async login(email, password) {
@@ -18,6 +19,13 @@ class SessionController {
   static forgotPassword(email) {
     return ApiService.post(FORGOT_PASSWORD_PATH, {
       email,
+    });
+  }
+
+  static setPassword(token, password) {
+    return ApiService.post(SET_PASSWORD_PATH, {
+      token,
+      password,
     });
   }
 }
