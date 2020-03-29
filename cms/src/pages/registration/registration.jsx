@@ -49,7 +49,7 @@ class Registration extends React.Component {
         try {
             const data = await RegistrationController.register(this.email, this.password);
 
-            goToPage(routeNaming.DASHBOARD, data.id)
+            goToPage(routeNaming.DASHBOARD);
 
         } catch (error) {
             logger.warn(error);
@@ -81,7 +81,7 @@ class Registration extends React.Component {
                         <input className={styles.input} required={true} type="password" id="registration-passwordRepeat"
                                onChange={this._handleVerifyPasswordChange}/>
                         {this.state.notSamePassword &&
-                        <p>La contraseña debe ser la misma</p>
+                        <p className={style.error}>La contraseña debe ser la misma</p>
                         }
                     </div>
 
