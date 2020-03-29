@@ -101,7 +101,7 @@ class Login extends React.Component {
           <input type="submit" />
         </form>
       </div>
-    )
+    );
   }
 }
 
