@@ -2,6 +2,7 @@ import React from "react";
 import {withLayout, LAYOUT_TYPES} from '../../hocs/with-layout';
 import style from "./registration.module.scss";
 import {RegistrationController} from "../../networking/controllers/registration-controller";
+import {logger} from "../../helpers/logger";
 
 class Registration extends React.Component {
 
@@ -46,7 +47,7 @@ class Registration extends React.Component {
         try {
             await RegistrationController.register(this.email, this.password);
         } catch (error) {
-            //Logger
+            logger.warn(error);
         }
 
     };
