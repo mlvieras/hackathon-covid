@@ -23,9 +23,6 @@ class Api::BusinessService < ServiceObject
     availability_hours: 'De 18 a 20 hrs.'
   }]
 
-  def initialize
-  end
-
   def call
     success!(DUMMY_DATA)
   end
