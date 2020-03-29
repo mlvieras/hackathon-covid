@@ -1,0 +1,54 @@
+@import '../../assets/stylesheets/colors.scss';
+
+.container {
+  padding: 15px;
+  max-width: 1024px;
+}
+
+.title {
+  font-size: 30px;
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+.subTitle {
+  font-size: 20px;
+  margin: 0;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.label {
+  font-size: 14px;
+  margin-top: 15px;
+  display: block;
+}
+
+.infoLabel {
+  font-size: 11px;
+  font-style: italic;
+  margin-left: 5px;
+}
+
+.input {
+  width: 70%;
+  padding: 10px;
+  font-size: 16px;
+  height: 35px;
+  margin-top: 5px;
+}
+
+.submit {
+  padding: 15px 30px;
+  font-size: 15px;
+  background: $primary-color;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 15px;
+  &:hover {
+    background: $primary-color-light;
+  }
+}

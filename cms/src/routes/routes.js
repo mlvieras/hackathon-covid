@@ -5,7 +5,8 @@ const history = createBrowserHistory();
 const routeNaming = {
   CATCH_ALL: 'catchAll',
   LOGIN: 'login',
-  REGISTER: 'register'
+  REGISTER: 'register',
+  BUSINESS_INFO: "businessInfo"
 };
 
 const PATH_PARAM_REGEX = /:[^/]+/gi;
@@ -40,6 +41,10 @@ const routes = [
   {
     name: routeNaming.REGISTER,
     path: '/register'
+  },
+  {
+    name: routeNaming.BUSINESS_INFO,
+    path: '/businessInfo'
   },
   {
     // TODO: use a catch all component like a 404
