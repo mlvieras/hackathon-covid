@@ -1,4 +1,6 @@
 import {ApiService} from "../api-service";
+import {ProviderSerializer} from "../serializers/provider-serializer";
+import { Provider } from '../../models/provider';
 
 const REGISTRATION_PATH = "api/registration";
 
@@ -9,7 +11,8 @@ class RegistrationController {
             email,
             password
         });
-        /*Provider serializer?*/
+        const deSerializedData = ProviderSerializer.deSerialize(response.data);
+        return new Provider(deSerializedData);
     }
 
 }

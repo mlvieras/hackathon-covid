@@ -57,8 +57,8 @@ class Login extends React.Component {
     }
 
     try {
-      await SessionController.login(this.email, this.password);
-      goToPage(routeNaming.DASHBOARD);
+      const data = await SessionController.login(this.email, this.password);
+      goToPage(routeNaming.DASHBOARD, data.id);
     } catch (error) {
       logger.warn(error);
     }
