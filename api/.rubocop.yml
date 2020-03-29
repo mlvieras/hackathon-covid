@@ -8,6 +8,9 @@ AllCops:
     - node_modules/**/*
     - Rakefile
     - features/**/*
+    - config/initializers/*
+    - config/environments/*
+    - spec/rails_helper.rb
 
 # Configuration
 Metrics/AbcSize:
