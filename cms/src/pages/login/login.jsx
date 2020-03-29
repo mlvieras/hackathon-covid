@@ -67,38 +67,46 @@ class Login extends React.Component {
   render() {
     return (
       <div className={styles.container}>
-        <form onSubmit={this._onSubmit}>
-          <h1>
+        <form onSubmit={this._onSubmit} className={styles.form}>
+          <h1 className={styles.title}>
             Iniciar sesión
           </h1>
 
-          <label htmlFor="login-page-email">
-            Email
-            <input id="login-page-email" onChange={this._onEmailChange} />
+          <label className={styles.label} htmlFor="login-page-email">
+            Email <br />
+            <input
+              className={styles.input}
+              id="login-page-email"
+              onChange={this._onEmailChange}
+            />
             {
               this.state.emailError
               && (
-                <p>
+                <p className={styles.error}>
                   {this.state.emailError}
                 </p>
               )
             }
           </label>
 
-          <label htmlFor="login-page-password">
-            Contraseña
-            <input id="login-page-password" onChange={this._onPasswordChange} />
+          <label className={styles.label} htmlFor="login-page-password">
+            Contraseña <br />
+            <input
+              className={styles.input}
+              id="login-page-password"
+              onChange={this._onPasswordChange}
+            />
             {
               this.state.passwordError
               && (
-                <p>
+                <p className={styles.error}>
                   {this.state.passwordError}
                 </p>
               )
             }
           </label>
 
-          <input type="submit" />
+          <input type="submit" className={styles.submit} />
         </form>
       </div>
     );
