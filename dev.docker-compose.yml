@@ -1,0 +1,50 @@
+version: '3.2'
+services:
+  db-dev:
+    restart: always
+    image: postgres:11.5
+    volumes:
+      - type: bind
+        source: ./db-data
+        target: /var/lib/postgresql/data
+    networks:
+      - db_net
+  api-dev:
+    build:
+      context: ./api
+      dockerfile: dev.dockerfile
+    volumes:
+      - type: bind
+        source: ./api
+        target: /code
+    networks:
+      - api_net
+      - db_net
+    depends_on:
+      - db-dev
+  web-dev:
+    build:
+      context: ./cms
+      dockerfile: dev.dockerfile
+    volumes:
+      - type: bind
+        source: ./cms
+        target: /code
+    networks:
+      - web_net
+  nginx-dev:
+    image: nginx:latest
+    volumes:
+      - ./nginx.dev.conf:/etc/nginx/nginx.conf
+    ports:
+      - 3000:80
+    networks:
+      - api_net
+      - web_net
+    depends_on:
+      - api-dev
+      - web-dev
+networks:
+  api_net:
+  web_net:
+  db_net:
