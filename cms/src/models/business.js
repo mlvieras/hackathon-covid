@@ -1,6 +1,6 @@
 class Business {
-  constructor(params) {
 
+  constructor(params) {
     this.name = params.name;
     this.phones = params.phones;
     this.emails = params.emails;
@@ -14,8 +14,12 @@ class Business {
     this.deliveryZone = params.delivery_zone;
     this.tags = params.tags;
     this.time = params.available_hours;
-
   }
 }
+
+Business.typeConstants = {
+  DELIVERY: "DELIVERY",
+  SMALL_BUSINESS: "SMALL_BUSINESS"
+};
 
 export {Business};
