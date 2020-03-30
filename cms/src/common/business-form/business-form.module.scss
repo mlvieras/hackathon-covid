@@ -1,4 +1,4 @@
-@import '../../assets/stylesheets/colors.scss';
+@import 'src/assets/stylesheets/colors';
 
 .container {
   padding: 15px;
@@ -16,6 +16,7 @@
   margin: 0;
   margin-bottom: 20px;
   margin-top: 20px;
+  color: $sub-title-color;
 }
 
 .label {
