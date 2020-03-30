@@ -1,9 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe "Api::Businesses", type: :request do
-  
   describe 'GET #index' do
-    let(:json_response) { @last_json_response ||= JSON.parse(response.body, symbolize_names: true) }
+    let(:json_response) do
+      @last_json_response ||= JSON.parse(response.body, symbolize_names: true)
+    end
     let(:first_object) { json_response[0] }
 
     before(:each) do

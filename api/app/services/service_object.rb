@@ -1,7 +1,7 @@
 class ServiceObject
   class << self
     def call(*args)
-      service= new(*args)
+      service = new(*args)
       service.call
       service
     end
@@ -36,7 +36,11 @@ class ServiceObject
 
   def add_exception!(exception)
     @status = :exception
-    @exceptions = @exceptions.nil? ? [exception.message] : @exceptions.push(exception.message)
+    @exceptions = if @exceptions.nil?
+                    [exception.message]
+                  else
+                    @exceptions.push(exception.message)
+                  end
   end
 
   def logger
