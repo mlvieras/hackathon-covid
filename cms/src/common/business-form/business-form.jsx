@@ -3,7 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Business} from "../../models/business";
 
-const RenderField = ({field, readOnly, value, onChangeFn, required = false}) => (
+const Field = ({field, readOnly, value, onChangeFn, required = false}) => (
   <>
     {readOnly ?
       <p className={style.readValue}>{value}</p>
@@ -14,7 +14,7 @@ const RenderField = ({field, readOnly, value, onChangeFn, required = false}) => 
   </>
 );
 
-const RenderFieldCheckbox = ({field, readOnly, value, onChangeFn, stateValue, label}) => (
+const FieldCheckbox = ({field, readOnly, value, onChangeFn, stateValue, label}) => (
   <>
     {readOnly ?
       <>
@@ -79,30 +79,30 @@ export default class BusinessForm extends React.Component {
         <h5 className={style.subTitle}>Información general</h5>
 
         <label className={style.label} htmlFor="business-name">Nombre del negocio</label>
-        <RenderField field="name" onChangeFn={this.onValueChange} required={true}
+        <Field field="name" onChangeFn={this.onValueChange} required={true}
                      readOnly={this.readOnly} value={this.state.name}/>
 
         <label className={style.label} htmlFor="business-phones">Teléfonos
           <span className={style.infoLabel}>(Números de teléfonos separados por coma)</span>
         </label>
-        <RenderField field="phones" onChangeFn={this.onValueChange} required={true}
+        <Field field="phones" onChangeFn={this.onValueChange} required={true}
                      readOnly={this.readOnly} value={this.state.phones}/>
 
         <label className={style.label} htmlFor="business-emails">Emails
           <span className={style.infoLabel}>(Emails separados por coma)</span>
         </label>
 
-        <RenderField field="emails" onChangeFn={this.onValueChange} required={true}
+        <Field field="emails" onChangeFn={this.onValueChange} required={true}
                      readOnly={this.readOnly} value={this.state.emails}/>
 
         <label className={style.label} htmlFor="business-tags">Tags
           <span className={style.infoLabel}>(Tags para identificar a tu negocio, separados por coma)</span>
         </label>
-        <RenderField field="tags" onChangeFn={this.onValueChange}
+        <Field field="tags" onChangeFn={this.onValueChange}
                      readOnly={this.readOnly} value={this.state.tags}/>
 
         <label className={style.label} htmlFor="business-time">Horario</label>
-        <RenderField field="time" onChangeFn={this.onValueChange}
+        <Field field="time" onChangeFn={this.onValueChange}
                      readOnly={this.readOnly} value={this.state.time}/>
 
         <label htmlFor="business-description" className={style.label}>
@@ -121,12 +121,12 @@ export default class BusinessForm extends React.Component {
         }
 
         <div>
-          <RenderFieldCheckbox readOnly={this.readOnly} value={Business.typeConstants.DELIVERY}
+          <FieldCheckbox readOnly={this.readOnly} value={Business.typeConstants.DELIVERY}
                                onChangeFn={this.onValueChange}
                                label="Delivery" field="type" stateValue={this.state.type}/>
 
 
-          <RenderFieldCheckbox readOnly={this.readOnly} value={Business.typeConstants.SMALL_BUSINESS}
+          <FieldCheckbox readOnly={this.readOnly} value={Business.typeConstants.SMALL_BUSINESS}
                                onChangeFn={this.onValueChange}
                                label="Negocios" field="type" stateValue={this.state.type}/>
         </div>
@@ -135,20 +135,20 @@ export default class BusinessForm extends React.Component {
           <>
             <label className={style.label} onChange={this.onValueChange}
                    htmlFor="business-delivery-zone">Zona de delivery</label>
-            <RenderField field="deliveryZone" onChangeFn={this.onValueChange} required={true}
+            <Field field="deliveryZone" onChangeFn={this.onValueChange} required={true}
                          readOnly={this.readOnly} value={this.state.deliveryZone}/>
 
           </>
           :
           <>
             <label className={style.label} htmlFor="business-address">Dirección</label>
-            <RenderField field="address" onChangeFn={this.onValueChange} required={true}
+            <Field field="address" onChangeFn={this.onValueChange} required={true}
                          readOnly={this.readOnly} value={this.state.address}/>
 
             <label className={style.label} htmlFor="business-delivery-range">Rango de entrega
               <span className={style.infoLabel}>(Por ejemplo. a 300 metros)</span>
             </label>
-            <RenderField field="deliveryRange" onChangeFn={this.onValueChange} required={true}
+            <Field field="deliveryRange" onChangeFn={this.onValueChange} required={true}
                          readOnly={this.readOnly} value={this.state.deliveryRange}/>
           </>
         }
@@ -156,11 +156,11 @@ export default class BusinessForm extends React.Component {
         <h5 className={style.subTitle}>Redes sociales</h5>
 
         <label className={style.label} htmlFor="business-instagram">Instagram</label>
-        <RenderField field="instagram" onChangeFn={this.onValueChange}
+        <Field field="instagram" onChangeFn={this.onValueChange}
                      readOnly={this.readOnly} value={this.state.instagram}/>
 
         <label className={style.label} htmlFor="business-facebook">Facebook</label>
-        <RenderField field="facebook" onChangeFn={this.onValueChange}
+        <Field field="facebook" onChangeFn={this.onValueChange}
                      readOnly={this.readOnly} value={this.state.facebook}/>
         <br/>
 
