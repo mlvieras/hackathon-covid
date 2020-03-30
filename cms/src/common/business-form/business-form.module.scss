@@ -1,4 +1,4 @@
-@import '../../assets/stylesheets/colors.scss';
+@import 'src/assets/stylesheets/colors';
 
 .container {
   padding: 15px;
@@ -16,10 +16,11 @@
   margin: 0;
   margin-bottom: 20px;
   margin-top: 20px;
+  color: $sub-title-color;
 }
 
 .label {
-  font-size: 14px;
+  font-size: 16px;
   margin-top: 15px;
   display: block;
 }
@@ -58,4 +59,8 @@
   &:hover {
     background: $primary-color-light;
   }
+}
+
+.readValue {
+  color: #444444;
 }

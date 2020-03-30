@@ -1,8 +1,8 @@
 import React from "react";
-import style from "./business-info.module.scss";
 import {BusinessController} from "../../networking/controllers/business-controller";
 import {goToPage, routeNaming} from "../../routes";
 import {LAYOUT_TYPES, withLayout} from "../../hocs/with-layout";
+import BusinessForm from "../../common/business-form/business-form";
 
 class BusinessInfo extends React.Component {
 
@@ -22,16 +22,7 @@ class BusinessInfo extends React.Component {
       facebook: "",
       description: ""
     };
-
-    this._onTextChange = this._onTextChange.bind(this);
     this._onSubmit = this._onSubmit.bind(this);
-  }
-
-  _onTextChange(e) {
-    const state = {...this.state};
-    state[e.target.name] = e.target.value;
-
-    this.setState(state);
   }
 
   async _onSubmit(e) {
@@ -48,89 +39,7 @@ class BusinessInfo extends React.Component {
 
   render() {
     return (
-      <form className={style.container} onSubmit={this._onSubmit}>
-
-        <h1 className={style.title}>Información sobre el negocio</h1>
-
-        <p className={style.subTitle}>Información general</p>
-
-        <label className={style.label} htmlFor="business-name">Nombre del negocio</label>
-        <input id="business-name" onChange={this._onTextChange} required
-               name="name" className={style.input}/>
-
-        <label className={style.label} htmlFor="business-phones">Teléfonos
-          <span className={style.infoLabel}>(Números de teléfonos separados por coma)</span>
-        </label>
-        <input id="business-phones" onChange={this._onTextChange} required
-               name="phones" className={style.input}/>
-
-        <label className={style.label} htmlFor="business-emails">Emails
-          <span className={style.infoLabel}>(Emails separados por coma)</span>
-        </label>
-        <input id="business-email" onChange={this._onTextChange} required
-               name="emails" className={style.input}/>
-
-        <label className={style.label} htmlFor="business-tags">Tags
-          <span className={style.infoLabel}>(Tags para identificar a tu negocio, separados por coma)</span>
-        </label>
-        <input id="business-tags" onChange={this._onTextChange}
-               name="tags"
-               className={style.input}/>
-
-        <label className={style.label} htmlFor="business-time">Horario</label>
-        <input id="business-time" onChange={this._onTextChange}
-               name="time" className={style.input}/>
-
-        <p className={style.subTitle}>¿Qué tipo de negocio quieres registrar?</p>
-
-        <div className={style.radioContainer}>
-          <input type="radio" name="type" value="DELIVERY" onChange={this._onTextChange}
-                 checked={this.state.type === "DELIVERY"}/>
-          <label>Delivery</label>
-
-          <input type="radio" name="type" value="SMALL_BUSINESS" onChange={this._onTextChange}
-                 checked={this.state.type === "SMALL_BUSINESS"}/>
-          <label>Negocios</label>
-        </div>
-
-        {this.state.type === "DELIVERY" ?
-          <>
-            <label className={style.label} onChange={this._onTextChange} required
-                   htmlFor="business-delivery-zone">Zona de delivery</label>
-            <input id="business-delivery-zone" name="deliveryZone" className={style.input}/>
-          </>
-          :
-          <>
-            <label className={style.label} htmlFor="business-address">Dirección</label>
-            <input id="business-address" onChange={this._onTextChange} required
-                   name="address" className={style.input}/>
-
-            <label className={style.label} htmlFor="business-delivery-range">Rango de entrega</label>
-            <input id="business-delivery-range" onChange={this._onTextChange} required
-                   name="deliveryRange" placeholder="Ejemplo, 200 metros" className={style.input}/>
-          </>
-        }
-
-        <p className={style.subTitle}>Redes sociales</p>
-
-        <label className={style.label} htmlFor="business-instagram">Instagram</label>
-        <input id="business-instagram" onChange={this._onTextChange}
-               className={style.input}/>
-
-        <label className={style.label} htmlFor="business-facebook">Facebook</label>
-        <input id="business-facebook" onChange={this._onTextChange}
-               className={style.input}/>
-
-        <label htmlFor="business-description" className={style.label}>
-          Cuéntanos sobre ti y tu negocio
-        </label>
-        <textarea rows="3" className={style.textArea} id="business-description"
-         name="description" onChange={this._onTextChange}/>
-        <br/>
-
-        <button className={style.submit} type="submit">Enviar</button>
-
-      </form>
+      <BusinessForm onSubmitFn={this._onSubmit} readOnly={false}/>
     )
   }
 }
